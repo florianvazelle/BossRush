@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnf7ywe2fgyvg"]
+
+[ext_resource type="PackedScene" uid="uid://bs3miq6gm30sx" path="res://assets/models/graveyard/pumpkin.fbx" id="1_5hle0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k2uww"]
+radius = 0.153779
+
+[node name="Ammo" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -3.72529e-09, 0, 1, 0, 0, 0)
+
+[node name="pumpkin" parent="." instance=ExtResource("1_5hle0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741145, 0)
+shape = SubResource("SphereShape3D_k2uww")

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdupkh0grwy27"]
+[gd_scene load_steps=7 format=3 uid="uid://bdupkh0grwy27"]
 
 [ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://scenes/player/movement_controller.tscn" id="1_t1jcr"]
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://scenes/player/head.tscn" id="2_41iu1"]
 [ext_resource type="Script" path="res://scripts/player/sprint.gd" id="3_bgqcu"]
+[ext_resource type="Script" path="res://scripts/canon.gd" id="5_w0j3b"]
 [ext_resource type="Script" path="res://scripts/player/footsteep.gd" id="10_jo4mt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb2ry"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="Player" groups=["player"] instance=ExtResource("1_t1jcr")]
 collision_mask = 7
@@ -13,6 +17,14 @@ collision_mask = 7
 [node name="Foot" type="RayCast3D" parent="Head" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
 target_position = Vector3(0, 0, -2)
+
+[node name="Canon" type="CSGCylinder3D" parent="Head" index="2"]
+transform = Transform3D(0.986182, 0.160164, -0.0423441, 0, -0.255598, -0.966783, -0.165667, 0.953424, -0.252066, 1.0382, -0.64, -1.30804)
+material = SubResource("StandardMaterial3D_tb2ry")
+script = ExtResource("5_w0j3b")
+
+[node name="Marker3D" type="Marker3D" parent="Head/Canon" index="0"]
+transform = Transform3D(0.986182, 1.19209e-07, -0.165667, 0.160164, -0.255597, 0.953424, -0.0423439, -0.966783, -0.252065, 0.0225487, -1.40787, 0.0306617)
 
 [node name="Sprint" type="Node" parent="." index="2"]
 script = ExtResource("3_bgqcu")
