@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwfu5gdkeefe3"]
+[gd_scene load_steps=8 format=3 uid="uid://cwfu5gdkeefe3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
+[ext_resource type="PackedScene" uid="uid://b0ihe47wovtir" path="res://scenes/brick_wall.tscn" id="3_anfa8"]
+[ext_resource type="PackedScene" uid="uid://cyreud6bx7lpp" path="res://scenes/boss/ghost.tscn" id="4_iw6rf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1avmj"]
+sky_top_color = Color(0.185614, 0.254854, 0.699219, 1)
+sky_horizon_color = Color(0.9375, 0.86134, 0.553694, 1)
+sky_curve = 0.310579
+ground_bottom_color = Color(0.14902, 0.392157, 1, 1)
+ground_horizon_color = Color(0.701104, 0.655653, 0.988281, 1)
+ground_curve = 0.0373213
+
+[sub_resource type="Sky" id="Sky_k2oox"]
+sky_material = SubResource("ProceduralSkyMaterial_1avmj")
+
+[sub_resource type="Environment" id="Environment_yd3rs"]
+background_mode = 2
+background_color = Color(0.262745, 0.792157, 0.792157, 1)
+sky = SubResource("Sky_k2oox")
+ambient_light_source = 2
+ambient_light_color = Color(0.882812, 0.882812, 0.882812, 1)
+ambient_light_energy = 0.5
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_nernh")
@@ -11,4 +32,18 @@ script = ExtResource("1_nernh")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
-size = Vector3(13.7623, 1, 23.5813)
+size = Vector3(50, 1, 50)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yd3rs")
+
+[node name="Arena" type="Node3D" parent="."]
+
+[node name="BrickWall" parent="Arena" instance=ExtResource("3_anfa8")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.38223, -0.5, -20.2495)
+
+[node name="Ghost" parent="." instance=ExtResource("4_iw6rf")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -11.99)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.731723, 0.681603, 0, -0.681603, 0.731723, 0, 9.75889, 0)
