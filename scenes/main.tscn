@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwfu5gdkeefe3"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_nernh")
+
+[node name="Player" parent="." instance=ExtResource("2_mkirp")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(13.7623, 1, 23.5813)
