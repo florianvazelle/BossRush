@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyreud6bx7lpp"]
+[gd_scene load_steps=6 format=3 uid="uid://cyreud6bx7lpp"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhkjf80rwjd" path="res://assets/models/graveyard/character-ghost.fbx" id="1_674k0"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_khqc0"]
@@ -7,14 +7,21 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0y4o"]
 size = Vector3(0.312958, 0.580566, 0.322571)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nwp8"]
+size = Vector3(0.877441, 0.0971069, 0.165527)
+
 [node name="Ghost" type="Node3D"]
 script = ExtResource("1_khqc0")
 
 [node name="Ghost" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost"]
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="Ghost"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460189, 0.000335693)
 shape = SubResource("BoxShape3D_l0y4o")
+
+[node name="ArmsCollisionShape" type="CollisionShape3D" parent="Ghost"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00219727, 0.462722, 0.0245056)
+shape = SubResource("BoxShape3D_5nwp8")
 
 [node name="character-ghost" parent="Ghost" instance=ExtResource("1_674k0")]
 
