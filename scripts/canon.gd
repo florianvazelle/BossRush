@@ -8,7 +8,10 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			match event.keycode:
+				# TODO: change key to mouse
 				KEY_A:
+					# TODO: play shoot sfx
+
 					var ammo := Ammo.instantiate()
 					get_owner().get_parent().add_child(ammo)
 					ammo.global_position = spawn.global_position

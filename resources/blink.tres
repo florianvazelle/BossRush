@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://de22l2oq43fsj"]
+
+[ext_resource type="Shader" path="res://shaders/blink.gdshader" id="1_mb1o7"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_mb1o7")
+shader_parameter/hit = false
+shader_parameter/end_time = 5.0
+shader_parameter/start_freq = 1.0
+shader_parameter/end_freq = 10.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/blink_length = 0.5
+shader_parameter/blink_speed = 5.0

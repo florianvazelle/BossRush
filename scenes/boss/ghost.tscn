@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyreud6bx7lpp"]
+[gd_scene load_steps=5 format=3 uid="uid://cyreud6bx7lpp"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhkjf80rwjd" path="res://assets/models/graveyard/character-ghost.fbx" id="1_674k0"]
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_khqc0"]
 [ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_i317k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0y4o"]
 size = Vector3(0.312958, 0.580566, 0.322571)
 
 [node name="Ghost" type="Node3D"]
+script = ExtResource("1_khqc0")
 
 [node name="Ghost" type="StaticBody3D" parent="."]
 
@@ -17,3 +19,4 @@ shape = SubResource("BoxShape3D_l0y4o")
 [node name="character-ghost" parent="Ghost" instance=ExtResource("1_674k0")]
 
 [node name="Weakpoint" parent="." instance=ExtResource("2_i317k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0924921, 0.582854, -0.122483)
