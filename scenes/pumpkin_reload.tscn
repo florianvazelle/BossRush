@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b05wfry8s5tbp"]
+
+[ext_resource type="PackedScene" uid="uid://b40norqbwvnu7" path="res://assets/models/graveyard/pumpkin-tall.fbx" id="1_dayah"]
+
+[node name="PumpkinReload" type="Node3D"]
+
+[node name="pumpkin-tall" parent="." instance=ExtResource("1_dayah")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.72616, 0)
