@@ -31,10 +31,18 @@ func _ready():
 
 func hit(damage: int) -> void:
 	life -= damage
+	
+	# cancel current action and wait 4s
+	set_state(State.NOOP)
+	pattern_cooldown = 4.0
+	
+	apply_central_impulse((global_position - current_target).normalized() * 20)
+	
 	# play hit animation
 	blink()
 	# TODO: play hit sfx
 	print("hit")
+	
 	
 func set_state(new_state):
 	# set new state to ATTACK

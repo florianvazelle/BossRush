@@ -13,5 +13,5 @@ func _unhandled_input(event):
 		
 		var target: Vector3 = to_global(spawn.position + Vector3.UP)
 		var dir: Vector3 = spawn.global_position - target
-		var speed := 15
+		var speed := 20
 		ammo.apply_impulse(dir.normalized() * speed)
