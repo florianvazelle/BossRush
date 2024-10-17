@@ -14,7 +14,7 @@ size = Vector3(0.877441, 0.0971069, 0.165527)
 
 [node name="ZombieBody" type="RigidBody3D" parent="."]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_43q1a")
 

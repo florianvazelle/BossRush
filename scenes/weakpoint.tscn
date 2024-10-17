@@ -14,7 +14,7 @@ data = PackedVector3Array(0, 0.5, 0, 0, 0.5, 0, 0, 0.3536, 0.3536, 0, 0.5, 0, 0.
 
 [node name="Weakpoint" type="StaticBody3D"]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("1_vdgd2")
 
 [node name="WeakpointMesh" type="MeshInstance3D" parent="."]
