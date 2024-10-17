@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1ik213bdwkfv"]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_43q1a"]
+[ext_resource type="PackedScene" uid="uid://8hn130eerinn" path="res://assets/models/graveyard/character-zombie.fbx" id="1_jdl0n"]
+[ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_7i048"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olkwr"]
+size = Vector3(0.312958, 0.580566, 0.322571)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrha5"]
+size = Vector3(0.877441, 0.0971069, 0.165527)
+
+[node name="Zombie" type="Node3D"]
+
+[node name="ZombieBody" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 9
+gravity_scale = 0.0
+script = ExtResource("1_43q1a")
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="ZombieBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4.65441, 0.000335693)
+shape = SubResource("BoxShape3D_olkwr")
+
+[node name="ArmsCollisionShape" type="CollisionShape3D" parent="ZombieBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00219727, 4.65694, 0.0245056)
+shape = SubResource("BoxShape3D_hrha5")
+
+[node name="character-zombie" parent="ZombieBody" instance=ExtResource("1_jdl0n")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Weakpoint" parent="ZombieBody" instance=ExtResource("2_7i048")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5.67973, -1.41363)

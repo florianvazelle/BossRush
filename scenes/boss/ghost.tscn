@@ -11,19 +11,23 @@ size = Vector3(0.312958, 0.580566, 0.322571)
 size = Vector3(0.877441, 0.0971069, 0.165527)
 
 [node name="Ghost" type="Node3D"]
+
+[node name="GhostBody" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 9
+gravity_scale = 0.0
 script = ExtResource("1_khqc0")
 
-[node name="Ghost" type="StaticBody3D" parent="."]
-
-[node name="BodyCollisionShape" type="CollisionShape3D" parent="Ghost"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460189, 0.000335693)
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="GhostBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4.65441, 0.000335693)
 shape = SubResource("BoxShape3D_l0y4o")
 
-[node name="ArmsCollisionShape" type="CollisionShape3D" parent="Ghost"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00219727, 0.462722, 0.0245056)
+[node name="ArmsCollisionShape" type="CollisionShape3D" parent="GhostBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00219727, 4.65694, 0.0245056)
 shape = SubResource("BoxShape3D_5nwp8")
 
-[node name="character-ghost" parent="Ghost" instance=ExtResource("1_674k0")]
+[node name="character-ghost" parent="GhostBody" instance=ExtResource("1_674k0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="Weakpoint" parent="." instance=ExtResource("2_i317k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0924921, 0.582854, -0.122483)
+[node name="Weakpoint" parent="GhostBody" instance=ExtResource("2_i317k")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.15, 5.75, -1.15)
