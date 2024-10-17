@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_7i048"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_olkwr"]
-size = Vector3(0.312958, 0.580566, 0.322571)
+size = Vector3(0.312958, 0.763916, 0.322571)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hrha5"]
 size = Vector3(0.877441, 0.0971069, 0.165527)
@@ -19,7 +19,7 @@ gravity_scale = 0.0
 script = ExtResource("1_43q1a")
 
 [node name="BodyCollisionShape" type="CollisionShape3D" parent="ZombieBody"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4.65441, 0.000335693)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 3.73766, 0.000335693)
 shape = SubResource("BoxShape3D_olkwr")
 
 [node name="ArmsCollisionShape" type="CollisionShape3D" parent="ZombieBody"]

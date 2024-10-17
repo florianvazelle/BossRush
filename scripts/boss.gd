@@ -84,7 +84,6 @@ func _process(delta):
 			set_state(State.SETUP_PATTERN)
 
 	elif state == State.SETUP_PATTERN:
-		print(global_position.distance_to(current_pattern.start_pos(current_target)))
 		if global_position.distance_to(current_pattern.start_pos(current_target)) < 2.5:
 			set_state(State.ATTACK)
 			

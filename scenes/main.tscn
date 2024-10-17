@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
 [ext_resource type="PackedScene" uid="uid://b0ihe47wovtir" path="res://scenes/brick_wall.tscn" id="3_anfa8"]
 [ext_resource type="PackedScene" uid="uid://cyreud6bx7lpp" path="res://scenes/boss/ghost.tscn" id="4_iw6rf"]
-[ext_resource type="PackedScene" path="res://scenes/boss/zombie.tscn" id="5_42rc4"]
+[ext_resource type="PackedScene" uid="uid://d1ik213bdwkfv" path="res://scenes/boss/zombie.tscn" id="5_42rc4"]
 [ext_resource type="PackedScene" uid="uid://b05wfry8s5tbp" path="res://scenes/pumpkin_reload.tscn" id="6_klwtk"]
 [ext_resource type="Script" path="res://scripts/reload_spawn.gd" id="6_w1d3r"]
 
