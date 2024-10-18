@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyreud6bx7lpp"]
+[gd_scene load_steps=8 format=3 uid="uid://cyreud6bx7lpp"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhkjf80rwjd" path="res://assets/models/graveyard/character-ghost.fbx" id="1_674k0"]
-[ext_resource type="Script" path="res://scripts/boss.gd" id="1_khqc0"]
+[ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_khqc0"]
 [ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_i317k"]
+[ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_cxy6t"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="5_mjca1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0y4o"]
 size = Vector3(0.312958, 0.580566, 0.322571)
@@ -31,3 +33,9 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Weakpoint" parent="GhostBody" instance=ExtResource("2_i317k")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.15, 5.75, -1.15)
+
+[node name="BlinkComponent" type="Node" parent="GhostBody"]
+script = ExtResource("4_cxy6t")
+
+[node name="LifeComponent" type="Node" parent="GhostBody"]
+script = ExtResource("5_mjca1")

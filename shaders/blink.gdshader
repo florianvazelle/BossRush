@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform bool hit = true;
+uniform bool hit = false;
 uniform float end_time = 5.0; //length of animation in seconds
 uniform float start_freq : hint_range(0.0, 1.0, 0.05) = 1; //how fast the flashing will be at start of animation
 uniform float end_freq : hint_range(1.0, 20.0, 0.5) = 10; //how fast it will be in the end

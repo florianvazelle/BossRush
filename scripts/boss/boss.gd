@@ -1,8 +1,6 @@
 class_name Boss
 extends RigidBody3D
 
-const BlinkMaterial : ShaderMaterial = preload("res://resources/blink.tres")
-
 var Patterns: Array[Pattern] = [
 	preload("res://scenes/pattern/stun_attack.tscn").instantiate(),
 	preload("res://scenes/pattern/forward_attack.tscn").instantiate(),
@@ -10,36 +8,34 @@ var Patterns: Array[Pattern] = [
 
 enum State {NOOP, SETUP_PATTERN, ATTACK}
 
-var blink_activated: bool = false
-var blink_timer: float = 0
+@export var enabled := true
 
 var current_pattern: Pattern
 var pattern_cooldown: float = 0
 var state: State
 var current_target: Vector3
 
-@export var life = 10
-@onready var blink_time: float = 2.0
 @onready var weakpoint: Weakpoint = $Weakpoint
+@onready var blink_component = $BlinkComponent
+@onready var life_component = $LifeComponent
 @onready var player = get_tree().get_nodes_in_group(&"player")[0]
 
 
 func _ready():
 	weakpoint.connect("hit", hit)
-	setup_blink_material(self)
+	weakpoint.connect("hit", blink_component.blink)
+	weakpoint.connect("hit", life_component.apply_damage)
+
 	set_state(State.SETUP_PATTERN)
 
+
 func hit(damage: int) -> void:
-	life -= damage
-	
 	# cancel current action and wait 4s
 	set_state(State.NOOP)
 	pattern_cooldown = 4.0
 	
 	apply_central_impulse((global_position - current_target).normalized() * 20)
 	
-	# play hit animation
-	blink()
 	# TODO: play hit sfx
 	print("hit")
 	
@@ -65,20 +61,11 @@ func set_state(new_state):
 		current_pattern = null
 		linear_velocity = Vector3.ZERO
 
-func _process(delta):
-	if life <= 0:
-		dead()
-	
-	if blink_activated:
-		if blink_timer <= 0:
-			BlinkMaterial.set_shader_parameter("hit", false)
-			blink_activated = false
-		else:
-			# decrease timer
-			blink_timer -= delta
-		
-		return
 
+func _process(delta):
+	if not enabled:
+		return
+	
 	if state == State.NOOP:
 		if pattern_cooldown > 0.0:
 			set_state(State.SETUP_PATTERN)
@@ -97,21 +84,3 @@ func _process(delta):
 			set_state(State.NOOP)
 
 	pattern_cooldown += delta
-
-
-func setup_blink_material(root: Node):
-	for child in root.get_children():
-		if child is MeshInstance3D:
-			child.set_material_overlay(BlinkMaterial)
-		setup_blink_material(child)
-
-func blink():
-	BlinkMaterial.set_shader_parameter("hit", true)
-	blink_activated = true
-	# reset timer
-	blink_timer = blink_time
-
-func dead():
-	# TODO: play dead animation
-	# TODO: play dead sfx
-	queue_free()

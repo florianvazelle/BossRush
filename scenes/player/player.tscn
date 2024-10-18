@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://scenes/player/head.tscn" id="2_41iu1"]
 [ext_resource type="Script" path="res://scripts/player/sprint.gd" id="3_bgqcu"]
 [ext_resource type="Script" path="res://scripts/canon.gd" id="5_w0j3b"]
-[ext_resource type="Script" path="res://scripts/player/life.gd" id="6_rny40"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="6_rny40"]
 [ext_resource type="Script" path="res://scripts/player/footsteep.gd" id="10_jo4mt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb2ry"]
@@ -28,7 +28,7 @@ script = ExtResource("5_w0j3b")
 [node name="Marker3D" type="Marker3D" parent="Head/Canon" index="0"]
 transform = Transform3D(0.986182, 1.19209e-07, -0.165667, 0.160164, -0.255597, 0.953424, -0.0423439, -0.966783, -0.252065, 0.0225487, -1.40787, 0.0306617)
 
-[node name="Sprint" type="Node" parent="." index="2"]
+[node name="SprintComponent" type="Node" parent="." index="2"]
 script = ExtResource("3_bgqcu")
 
 [node name="FootstepComponent" type="Node" parent="." index="3"]
@@ -37,5 +37,5 @@ feet_path = NodePath("../Head/Foot")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FootstepComponent" index="0"]
 
-[node name="Life" type="Node" parent="." index="4"]
+[node name="LifeComponent" type="Node" parent="." index="4"]
 script = ExtResource("6_rny40")

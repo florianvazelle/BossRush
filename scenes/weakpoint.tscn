@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://df805u6l6lhoh"]
 
-[ext_resource type="Script" path="res://scripts/weakpoint.gd" id="1_vdgd2"]
+[ext_resource type="Script" path="res://scripts/boss/weakpoint.gd" id="1_vdgd2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0eloh"]
 radial_segments = 6
