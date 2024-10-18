@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci5g6hvmxqhrd"]
+
+[ext_resource type="Script" path="res://scripts/pattern.gd" id="1_m2c1a"]
+
+[node name="StunAttack" type="Node3D" node_paths=PackedStringArray("start", "end")]
+script = ExtResource("1_m2c1a")
+pattern_name = "var. Stun"
+start = NodePath("Start")
+end = NodePath("End")
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, 0)
+
+[node name="End" type="Marker3D" parent="."]

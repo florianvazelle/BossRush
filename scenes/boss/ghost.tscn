@@ -39,3 +39,7 @@ script = ExtResource("4_cxy6t")
 
 [node name="LifeComponent" type="Node" parent="GhostBody"]
 script = ExtResource("5_mjca1")
+
+[node name="DebugStateLabel" type="Label3D" parent="GhostBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14127, 6.73543, 1.63976)
+pixel_size = 0.02

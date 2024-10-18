@@ -4,10 +4,11 @@
 
 [node name="StunAttack" type="Node3D" node_paths=PackedStringArray("start", "end")]
 script = ExtResource("1_7wmxe")
+pattern_name = "Stun"
 start = NodePath("Start")
 end = NodePath("End")
 
 [node name="Start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="End" type="Marker3D" parent="."]
