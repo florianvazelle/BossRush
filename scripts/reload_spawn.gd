@@ -16,3 +16,5 @@ func _on_timer_spawn_pumpkin_timeout() -> void:
 		pumpkin.position = reload_position
 		add_child(pumpkin)
 		reload_count += 1
+		
+		pumpkin.ReloadTaken.connect()

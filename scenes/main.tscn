@@ -66,6 +66,8 @@ wait_time = 5.0
 autostart = true
 
 [node name="PumpkinSpawnRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("6_w1d3r")
 reload_scene = ExtResource("6_klwtk")
 
