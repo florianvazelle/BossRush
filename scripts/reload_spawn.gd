@@ -1,6 +1,6 @@
 extends Area3D
 
-signal ReloadPlayer(quantity)
+signal ReloadPlayer(additional_quantity)
 
 @export var reload_scene: PackedScene
 @export var max_concurrent_reloads = 5

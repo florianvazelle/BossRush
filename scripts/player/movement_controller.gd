@@ -1,6 +1,8 @@
 class_name MovementController
 extends CharacterBody3D
 
+signal remaining_ammo_changed(new_quantiy)
+
 @export_range(0.0, 1.0, 0.05) var air_control := 0.3
 
 @export var gravity_multiplier := 3.0
@@ -72,5 +74,9 @@ func accelerate(delta: float) -> void:
 	velocity.z = temp_vel.z
 
 
+func _ready() -> void:
+	remaining_ammo_changed.emit($Head/Canon.ammo_count)
+
 func _on_pumpkin_spawn_range_reload_player(quantity: Variant) -> void:
 	$Head/Canon.reload(quantity)
+	remaining_ammo_changed.emit($Head/Canon.ammo_count)

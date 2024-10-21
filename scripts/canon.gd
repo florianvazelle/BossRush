@@ -11,7 +11,6 @@ func _init():
 	ammo_count = max_ammo_count
 
 func _unhandled_input(event):
-	print(ammo_count)
 	if event.is_action_pressed(&"shoot") and ammo_count > 0 and $CanonTimer.time_left == 0:
 		# TODO: play shoot sfx
 		
@@ -26,6 +25,7 @@ func _unhandled_input(event):
 		
 		ammo_count -= 1
 		$CanonTimer.start()
+		get_parent().get_parent().remaining_ammo_changed.emit(ammo_count)
 
 func reload(ammo_qty: int):
 	ammo_count += ammo_qty
