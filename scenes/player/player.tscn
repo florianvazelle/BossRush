@@ -28,6 +28,10 @@ script = ExtResource("5_w0j3b")
 [node name="Marker3D" type="Marker3D" parent="Head/Canon" index="0"]
 transform = Transform3D(0.986182, 1.19209e-07, -0.165667, 0.160164, -0.255597, 0.953424, -0.0423439, -0.966783, -0.252065, 0.0225487, -1.40787, 0.0306617)
 
+[node name="CanonTimer" type="Timer" parent="Head/Canon" index="1"]
+wait_time = 0.25
+one_shot = true
+
 [node name="SprintComponent" type="Node" parent="." index="2"]
 script = ExtResource("3_bgqcu")
 

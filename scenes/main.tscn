@@ -66,6 +66,8 @@ wait_time = 5.0
 autostart = true
 
 [node name="PumpkinSpawnRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("6_w1d3r")
 reload_scene = ExtResource("6_klwtk")
 
@@ -74,3 +76,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0239105, 0, -0.679527)
 shape = SubResource("BoxShape3D_glomt")
 
 [connection signal="timeout" from="SpawnReloadTimer" to="PumpkinSpawnRange" method="_on_timer_spawn_pumpkin_timeout"]
+[connection signal="ReloadPlayer" from="PumpkinSpawnRange" to="Player" method="_on_pumpkin_spawn_range_reload_player"]

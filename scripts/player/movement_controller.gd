@@ -70,3 +70,7 @@ func accelerate(delta: float) -> void:
 
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
+
+
+func _on_pumpkin_spawn_range_reload_player(quantity: Variant) -> void:
+	$Head/Canon.reload(quantity)
