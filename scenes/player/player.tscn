@@ -43,3 +43,5 @@ feet_path = NodePath("../Head/Foot")
 
 [node name="LifeComponent" type="Node" parent="." index="4"]
 script = ExtResource("6_rny40")
+
+[connection signal="life_changed" from="LifeComponent" to="." method="_on_life_component_life_changed"]

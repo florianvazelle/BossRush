@@ -2,6 +2,7 @@ class_name MovementController
 extends CharacterBody3D
 
 signal remaining_ammo_changed(new_quantiy)
+signal life_changed(new_life)
 
 @export_range(0.0, 1.0, 0.05) var air_control := 0.3
 
@@ -76,7 +77,12 @@ func accelerate(delta: float) -> void:
 
 func _ready() -> void:
 	remaining_ammo_changed.emit($Head/Canon.ammo_count)
+	life_changed.emit($LifeComponent.life)
 
 func _on_pumpkin_spawn_range_reload_player(quantity: Variant) -> void:
 	$Head/Canon.reload(quantity)
 	remaining_ammo_changed.emit($Head/Canon.ammo_count)
+
+
+func _on_life_component_life_changed(new_life: Variant) -> void:
+	life_changed.emit(new_life)

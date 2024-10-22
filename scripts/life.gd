@@ -7,9 +7,11 @@ extends Node
 @onready var body_node: CollisionObject3D = get_node(body_path)
 @onready var life = initial_life
 
+signal life_changed(new_life)
 
 func apply_damage(damage: int) -> void:
 	life -= damage
+	life_changed.emit(life)
 
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwfu5gdkeefe3"]
+[gd_scene load_steps=15 format=3 uid="uid://cwfu5gdkeefe3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b05wfry8s5tbp" path="res://scenes/pumpkin_reload.tscn" id="6_klwtk"]
 [ext_resource type="Script" path="res://scripts/reload_spawn.gd" id="6_w1d3r"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="8_bqhqc"]
+[ext_resource type="Texture2D" uid="uid://v3n4gm8u4wod" path="res://assets/ui/bars/health-under.png" id="9_5cnij"]
+[ext_resource type="Texture2D" uid="uid://bcun7ikaou25c" path="res://assets/ui/bars/health-over.png" id="10_5box4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1avmj"]
 sky_top_color = Color(0.185614, 0.254854, 0.699219, 1)
@@ -79,18 +81,65 @@ shape = SubResource("BoxShape3D_glomt")
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 41.0
+offset_bottom = 34.0
 script = ExtResource("8_bqhqc")
 
 [node name="AmmoLabel" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 10.0
-offset_right = 94.0
-offset_bottom = 33.0
+offset_left = 15.0
+offset_top = 612.0
+offset_right = 97.0
+offset_bottom = 635.0
 text = "Ammo: %s"
 
+[node name="PlayerHealthLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 71.0
+text = "Health: %s"
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 270.0
+offset_bottom = 28.0
+max_value = 10.0
+value = 5.0
+texture_under = ExtResource("9_5cnij")
+texture_progress = ExtResource("10_5box4")
+
+[node name="BossHealthLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 837.0
+offset_top = 584.0
+offset_right = 959.0
+offset_bottom = 607.0
+text = "Boss Health: %s"
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="UI"]
+offset_left = 264.0
+offset_top = 614.0
+offset_right = 963.0
+offset_bottom = 630.0
+max_value = 10.0
+value = 5.0
+nine_patch_stretch = true
+texture_under = ExtResource("9_5cnij")
+texture_progress = ExtResource("10_5box4")
+
+[node name="BossNameLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 589.0
+offset_right = 673.0
+offset_bottom = 612.0
+text = "Boss Name: %s"
+
+[connection signal="life_changed" from="Player" to="UI" method="_on_player_life_changed"]
 [connection signal="remaining_ammo_changed" from="Player" to="UI" method="_on_player_remaining_ammo_changed"]
 [connection signal="timeout" from="SpawnReloadTimer" to="PumpkinSpawnRange" method="_on_timer_spawn_pumpkin_timeout"]
 [connection signal="ReloadPlayer" from="PumpkinSpawnRange" to="Player" method="_on_pumpkin_spawn_range_reload_player"]
