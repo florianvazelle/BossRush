@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422732, 0)
 aabb = AABB(-0.0755344, -0.187505, -0.0853015, 0.151069, 0.375009, 0.170603)
 
 [node name="TakeReloadTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 1.0
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

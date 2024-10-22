@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cjphy1aca6ax0"]
+
+[ext_resource type="Shader" path="res://shaders/level.gdshader" id="1_ldl2q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ldl2q")
+shader_parameter/heightmap_normals_intensity = 0.233
+shader_parameter/heightmap_scale = 0.0
+shader_parameter/heightmap_height_scale = null
+shader_parameter/slope_edge_1 = null
+shader_parameter/slope_edge_2 = null
+shader_parameter/slope_edge_3 = null
+shader_parameter/slope_edge_noise_scale = null
+shader_parameter/slope_edge_noise_intensity = null
+shader_parameter/slope_color_remap_top = Color(0.937255, 0.572549, 0.345098, 1)
+shader_parameter/slope_color_remap_bottom = Color(0.972549, 0.741176, 0.576471, 1)
+shader_parameter/flat_color_remap_top = Color(1, 0.67451, 0.427451, 1)
+shader_parameter/flat_color_remap_bottom = Color(0.972549, 0.741176, 0.576471, 1)
+shader_parameter/flat_uv_scale = 1.0
+shader_parameter/flat_normal_scale = null
+shader_parameter/slope_uv_scale = 1.0
+shader_parameter/slope_normal_scale = null
+shader_parameter/flat_specular = null
+shader_parameter/flat_roughness = null
+shader_parameter/flat_metallic = null
+shader_parameter/flat_normal_intensity = null
+shader_parameter/slope_specular = null
+shader_parameter/slope_roughness = null
+shader_parameter/slope_metallic = null
+shader_parameter/slope_normal_intensity = null

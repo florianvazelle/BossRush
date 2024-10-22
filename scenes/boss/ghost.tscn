@@ -16,7 +16,7 @@ size = Vector3(0.877441, 0.0971069, 0.165527)
 
 [node name="GhostBody" type="RigidBody3D" parent="."]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_khqc0")
 
@@ -32,7 +32,7 @@ shape = SubResource("BoxShape3D_5nwp8")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Weakpoint" parent="GhostBody" instance=ExtResource("2_i317k")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.15, 5.75, -1.15)
+transform = Transform3D(12.4598, 0, 0, 0, 12.4598, 0, 0, 0, 12.4598, -0.576132, 6.22427, 1.0568)
 
 [node name="BlinkComponent" type="Node" parent="GhostBody"]
 script = ExtResource("4_cxy6t")

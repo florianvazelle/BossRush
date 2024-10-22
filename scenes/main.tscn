@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwfu5gdkeefe3"]
+[gd_scene load_steps=16 format=3 uid="uid://cwfu5gdkeefe3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
 [ext_resource type="PackedScene" uid="uid://b0ihe47wovtir" path="res://scenes/brick_wall.tscn" id="3_anfa8"]
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="3_mfmvq"]
 [ext_resource type="PackedScene" uid="uid://cyreud6bx7lpp" path="res://scenes/boss/ghost.tscn" id="4_iw6rf"]
 [ext_resource type="PackedScene" uid="uid://d1ik213bdwkfv" path="res://scenes/boss/zombie.tscn" id="5_42rc4"]
 [ext_resource type="PackedScene" uid="uid://b05wfry8s5tbp" path="res://scenes/pumpkin_reload.tscn" id="6_klwtk"]
@@ -11,21 +12,22 @@
 [ext_resource type="Texture2D" uid="uid://v3n4gm8u4wod" path="res://assets/ui/bars/health-under.png" id="9_5cnij"]
 [ext_resource type="Texture2D" uid="uid://bcun7ikaou25c" path="res://assets/ui/bars/health-over.png" id="10_5box4"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1avmj"]
-sky_top_color = Color(0.185614, 0.254854, 0.699219, 1)
-sky_horizon_color = Color(0.9375, 0.86134, 0.553694, 1)
-sky_curve = 0.310579
-ground_bottom_color = Color(0.14902, 0.392157, 1, 1)
-ground_horizon_color = Color(0.701104, 0.655653, 0.988281, 1)
-ground_curve = 0.0373213
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynxdi"]
+shader = ExtResource("3_mfmvq")
+shader_parameter/color_top = Color(0.34125, 0.0525, 0.375, 1)
+shader_parameter/color_horizon = Color(0.470703, 0.115057, 0.256023, 1)
+shader_parameter/color_bottom = Color(0.345703, 0.25582, 0.134824, 1)
+shader_parameter/exponent_factor_top = 5.0
+shader_parameter/exponent_factor_bottom = 5.0
+shader_parameter/intensity_amp = 1.0
 
-[sub_resource type="Sky" id="Sky_k2oox"]
-sky_material = SubResource("ProceduralSkyMaterial_1avmj")
+[sub_resource type="Sky" id="Sky_bxymo"]
+sky_material = SubResource("ShaderMaterial_ynxdi")
 
 [sub_resource type="Environment" id="Environment_yd3rs"]
 background_mode = 2
 background_color = Color(0.262745, 0.792157, 0.792157, 1)
-sky = SubResource("Sky_k2oox")
+sky = SubResource("Sky_bxymo")
 ambient_light_source = 2
 ambient_light_color = Color(0.882812, 0.882812, 0.882812, 1)
 ambient_light_energy = 0.5
@@ -121,6 +123,7 @@ offset_bottom = 607.0
 text = "Boss Health: %s"
 
 [node name="BossHealthBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
 offset_left = 264.0
 offset_top = 614.0
 offset_right = 963.0

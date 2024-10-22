@@ -21,26 +21,35 @@ var pattern_transform: Transform3D
 @onready var blink_component = $BlinkComponent
 @onready var life_component = $LifeComponent
 @onready var player: Node3D = get_tree().get_nodes_in_group(&"player")[0]
-@onready var debug_state_label: Label3D = $DebugStateLabel
+#@onready var debug_state_label: Label3D = $DebugStateLabel
+#@onready var anim: AnimationPlayer = $"character-zombie/AnimationPlayer"
 
 
 func _ready():
 	weakpoint.connect("hit", hit)
 	weakpoint.connect("hit", blink_component.blink)
-	weakpoint.connect("hit", life_component.apply_damage)
 
-	set_state(State.SETUP_PATTERN)
+	set_state(State.NOOP)
+	enabled = false
 
 
 func hit(damage: int) -> void:
-	# cancel current action and wait 4s
-	set_state(State.NOOP)
-	pattern_cooldown = 4.0
+	enabled = true
+
+	if damage > 4:
+		# cancel current action and wait 4s
+		set_state(State.NOOP)
+		pattern_cooldown = -2.0
 	
-	apply_central_impulse((global_position - player.global_position).normalized() * 20)
+		apply_central_impulse((global_position - player.global_position).normalized() * 20)
+	
+		var current_target := player.global_position
+		current_target.y = 0
+		look_at(current_target, Vector3.UP, true)
 	
 	# TODO: play hit sfx
 	print("hit")
+	life_component.apply_damage(damage)
 	
 	
 func set_state(new_state):
@@ -61,6 +70,7 @@ func set_state(new_state):
 		
 	elif new_state == State.SETUP_PATTERN: 
 		state = State.SETUP_PATTERN
+		linear_velocity = Vector3.ZERO
 		current_pattern = Patterns[randi() % Patterns.size()]
 		
 		# Compute the "world matrix" to apply to the pattern
@@ -85,13 +95,13 @@ func _process(delta):
 	if not enabled:
 		return
 		
-	if debug_state_label != null:
-		if state == State.ATTACK: 
-			debug_state_label.set_text("Attack (%s)" % current_pattern.pattern_name)
-		elif state == State.SETUP_PATTERN: 
-			debug_state_label.set_text("Prepare Attack (%s)" % current_pattern.pattern_name)
-		else: 
-			debug_state_label.set_text("NOOP")
+	#if debug_state_label != null:
+		#if state == State.ATTACK: 
+			#debug_state_label.set_text("Attack (%s)" % current_pattern.pattern_name)
+		#elif state == State.SETUP_PATTERN: 
+			#debug_state_label.set_text("Prepare Attack (%s)" % current_pattern.pattern_name)
+		#else: 
+			#debug_state_label.set_text("NOOP")
 	
 	if state == State.NOOP:
 		if pattern_cooldown > 0.0:

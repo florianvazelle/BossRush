@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1ik213bdwkfv"]
 
-[ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_43q1a"]
+[ext_resource type="Script" path="res://scripts/boss/zombie.gd" id="1_d5xbr"]
 [ext_resource type="PackedScene" uid="uid://8hn130eerinn" path="res://assets/models/graveyard/character-zombie.fbx" id="1_jdl0n"]
 [ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_7i048"]
 [ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_gojj0"]
@@ -16,10 +16,9 @@ size = Vector3(0.877441, 0.0971069, 0.165527)
 
 [node name="ZombieBody" type="RigidBody3D" parent="."]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 18
 gravity_scale = 0.0
-script = ExtResource("1_43q1a")
-enabled = false
+script = ExtResource("1_d5xbr")
 
 [node name="BodyCollisionShape" type="CollisionShape3D" parent="ZombieBody"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 3.73766, 0.000335693)
@@ -33,7 +32,7 @@ shape = SubResource("BoxShape3D_hrha5")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Weakpoint" parent="ZombieBody" instance=ExtResource("2_7i048")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5.67973, -1.41363)
+transform = Transform3D(19.4776, 0, 0, 0, 19.4776, 0, 0, 0, 19.4776, 0.11801, 7.81596, -0.124195)
 
 [node name="BlinkComponent" type="Node" parent="ZombieBody"]
 script = ExtResource("4_gojj0")

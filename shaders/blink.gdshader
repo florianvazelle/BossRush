@@ -1,3 +1,4 @@
+//https://godotshaders.com/shader/blinking-bomb-countdown/
 shader_type spatial;
 
 uniform bool hit = false;

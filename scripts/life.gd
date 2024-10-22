@@ -30,4 +30,4 @@ func _process(delta: float) -> void:
 func dead() -> void:
 	# TODO: play dead animation
 	# TODO: play dead sfx
-	queue_free()
+	get_owner().queue_free()
