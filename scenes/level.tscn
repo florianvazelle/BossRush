@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dimee6owoxhf2"]
+[gd_scene load_steps=39 format=3 uid="uid://dimee6owoxhf2"]
 
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_lsxa8"]
 [ext_resource type="Material" uid="uid://cjphy1aca6ax0" path="res://resources/level.tres" id="1_qtipf"]
@@ -15,12 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://cgvh2es4fchc5" path="res://assets/models/graveyard/road.fbx" id="11_wedri"]
 [ext_resource type="PackedScene" uid="uid://cdwq166hxxowm" path="res://assets/models/graveyard/grave-border.fbx" id="12_p1f68"]
 [ext_resource type="Script" path="res://scripts/altar.gd" id="12_sgicc"]
+[ext_resource type="PackedScene" uid="uid://cyreud6bx7lpp" path="res://scenes/boss/ghost.tscn" id="13_ipnuw"]
 [ext_resource type="PackedScene" uid="uid://cldykurpkpbmj" path="res://assets/models/graveyard/gravestone-bevel.fbx" id="13_vs6iy"]
 [ext_resource type="PackedScene" uid="uid://biu2fskjinq86" path="res://assets/models/graveyard/shovel-dirt.fbx" id="14_40phn"]
 [ext_resource type="PackedScene" uid="uid://bi0wpndw5ymxl" path="res://assets/models/graveyard/lantern-candle.fbx" id="14_av1qw"]
 [ext_resource type="PackedScene" uid="uid://3d1wx8ajd7kt" path="res://assets/models/graveyard/trunk.fbx" id="15_c67l2"]
+[ext_resource type="PackedScene" uid="uid://d1ik213bdwkfv" path="res://scenes/boss/zombie.tscn" id="16_865on"]
 
-[sub_resource type="Resource" id="Resource_t0ykd"]
+[sub_resource type="Resource" id="Resource_kakq7"]
 script = ExtResource("4_1cj7e")
 instance_count = 75
 align_to_path = false
@@ -31,7 +33,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_b11tm"]
+[sub_resource type="Resource" id="Resource_52hi0"]
 script = ExtResource("6_cmbkr")
 rotation = Vector3(0, 360, 0)
 snap_angle = Vector3(0, 0, 0)
@@ -41,7 +43,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_m80pn"]
+[sub_resource type="Resource" id="Resource_chsoc"]
 script = ExtResource("5_irtah")
 operation = 1
 scale = Vector3(5, 5, 5)
@@ -51,15 +53,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_m4dp1"]
+[sub_resource type="Resource" id="Resource_otlq1"]
 script = ExtResource("2_ridqo")
-stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_t0ykd"), SubResource("Resource_b11tm"), SubResource("Resource_m80pn")])
+stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_kakq7"), SubResource("Resource_52hi0"), SubResource("Resource_chsoc")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("9_eq2j1")
 radius = 32.0354
 
-[sub_resource type="Resource" id="Resource_5clyn"]
+[sub_resource type="Resource" id="Resource_iv313"]
 script = ExtResource("4_1cj7e")
 instance_count = 50
 align_to_path = false
@@ -70,7 +72,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_cp3e0"]
+[sub_resource type="Resource" id="Resource_ytcu4"]
 script = ExtResource("5_irtah")
 operation = 1
 scale = Vector3(5, 5, 5)
@@ -80,7 +82,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_ukva2"]
+[sub_resource type="Resource" id="Resource_jno8i"]
 script = ExtResource("6_cmbkr")
 rotation = Vector3(0, 360, 0)
 snap_angle = Vector3(0, 0, 0)
@@ -90,9 +92,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_aqs8o"]
+[sub_resource type="Resource" id="Resource_fu80v"]
 script = ExtResource("2_ridqo")
-stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_5clyn"), SubResource("Resource_cp3e0"), SubResource("Resource_ukva2")])
+stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_iv313"), SubResource("Resource_ytcu4"), SubResource("Resource_jno8i")])
 
 [sub_resource type="Resource" id="Resource_h8r3r"]
 script = ExtResource("9_eq2j1")
@@ -132,7 +134,7 @@ material = ExtResource("1_qtipf")
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("1_lsxa8")
-modifier_stack = SubResource("Resource_m4dp1")
+modifier_stack = SubResource("Resource_otlq1")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -155,7 +157,7 @@ shape = SubResource("Resource_g8bsm")
 
 [node name="ProtonScatter2" type="Node3D" parent="."]
 script = ExtResource("1_lsxa8")
-modifier_stack = SubResource("Resource_aqs8o")
+modifier_stack = SubResource("Resource_fu80v")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -181,8 +183,11 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5, 0)
 
 [node name="GhostAltar" type="StaticBody3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, -0.5, 0)
-collision_layer = 16
+collision_layer = 80
+collision_mask = 0
 script = ExtResource("12_sgicc")
+text = "Summon Ghost"
+boss = ExtResource("13_ipnuw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GhostAltar"]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
@@ -200,7 +205,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27035, 0)
 
 [node name="ZombieAltar" type="StaticBody3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 8)
-collision_layer = 16
+collision_layer = 80
+collision_mask = 0
+script = ExtResource("12_sgicc")
+text = "Summon Zombie"
+boss = ExtResource("16_865on")
 
 [node name="grave" parent="ZombieAltar" instance=ExtResource("11_lndfe")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
@@ -231,7 +240,10 @@ shape = SubResource("ConcavePolygonShape3D_5b24f")
 
 [node name="VampirAltar" type="StaticBody3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.5, -8)
-collision_layer = 16
+collision_layer = 80
+collision_mask = 0
+script = ExtResource("12_sgicc")
+text = "Summon Vampir"
 
 [node name="coffin" parent="VampirAltar" instance=ExtResource("10_lpnkf")]
 

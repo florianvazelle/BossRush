@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdupkh0grwy27"]
+[gd_scene load_steps=9 format=3 uid="uid://bdupkh0grwy27"]
 
 [ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://scenes/player/movement_controller.tscn" id="1_t1jcr"]
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://scenes/player/head.tscn" id="2_41iu1"]
 [ext_resource type="Script" path="res://scripts/player/sprint.gd" id="3_bgqcu"]
+[ext_resource type="Script" path="res://scripts/player/interact_ray.gd" id="4_g6dmq"]
 [ext_resource type="Script" path="res://scripts/canon.gd" id="5_w0j3b"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="6_rny40"]
 [ext_resource type="Script" path="res://scripts/player/footsteep.gd" id="10_jo4mt"]
@@ -31,6 +32,34 @@ transform = Transform3D(0.986182, 1.19209e-07, -0.165667, 0.160164, -0.255597, 0
 [node name="CanonTimer" type="Timer" parent="Head/Canon" index="1"]
 wait_time = 0.25
 one_shot = true
+
+[node name="InteractRay" type="RayCast3D" parent="Head" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -4, 0)
+collision_mask = 96
+script = ExtResource("4_g6dmq")
+
+[node name="CenterContainer" type="CenterContainer" parent="Head/InteractRay" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Head/InteractRay/CenterContainer" index="0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Head/InteractRay/CenterContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_stretch_ratio = 0.5
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Head/InteractRay/CenterContainer/VBoxContainer" index="1"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SprintComponent" type="Node" parent="." index="2"]
 script = ExtResource("3_bgqcu")

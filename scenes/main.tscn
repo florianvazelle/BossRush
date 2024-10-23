@@ -1,11 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwfu5gdkeefe3"]
+[gd_scene load_steps=14 format=3 uid="uid://cwfu5gdkeefe3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
-[ext_resource type="PackedScene" uid="uid://b0ihe47wovtir" path="res://scenes/brick_wall.tscn" id="3_anfa8"]
+[ext_resource type="PackedScene" uid="uid://dimee6owoxhf2" path="res://scenes/level.tscn" id="3_lvuoj"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="3_mfmvq"]
-[ext_resource type="PackedScene" uid="uid://cyreud6bx7lpp" path="res://scenes/boss/ghost.tscn" id="4_iw6rf"]
-[ext_resource type="PackedScene" uid="uid://d1ik213bdwkfv" path="res://scenes/boss/zombie.tscn" id="5_42rc4"]
 [ext_resource type="PackedScene" uid="uid://b05wfry8s5tbp" path="res://scenes/pumpkin_reload.tscn" id="6_klwtk"]
 [ext_resource type="Script" path="res://scripts/reload_spawn.gd" id="6_w1d3r"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="8_bqhqc"]
@@ -40,28 +38,10 @@ script = ExtResource("1_nernh")
 
 [node name="Player" parent="." instance=ExtResource("2_mkirp")]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-use_collision = true
-collision_layer = 16
-collision_mask = 25
-size = Vector3(50, 1, 50)
+[node name="Level" parent="." instance=ExtResource("3_lvuoj")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yd3rs")
-
-[node name="Arena" type="Node3D" parent="."]
-
-[node name="BrickWall" parent="Arena" instance=ExtResource("3_anfa8")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.38223, -0.5, -20.2495)
-collision_layer = 16
-collision_mask = 9
-
-[node name="Ghost" parent="." instance=ExtResource("4_iw6rf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.99)
-
-[node name="Zombie" parent="." instance=ExtResource("5_42rc4")]
-transform = Transform3D(0.25833, 0, -0.966057, 0, 1, 0, 0.966057, 0, 0.25833, -12.3111, 0.860203, 0.429888)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.731723, 0.681603, 0, -0.681603, 0.731723, 0, 9.75889, 0)
@@ -82,17 +62,20 @@ shape = SubResource("BoxShape3D_glomt")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 41.0
-offset_bottom = 34.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("8_bqhqc")
 
 [node name="AmmoLabel" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 612.0
+offset_top = 75.0
 offset_right = 97.0
-offset_bottom = 635.0
+offset_bottom = 98.0
 text = "Ammo: %s"
 
 [node name="PlayerHealthLabel" type="Label" parent="UI"]
@@ -114,33 +97,15 @@ value = 5.0
 texture_under = ExtResource("9_5cnij")
 texture_progress = ExtResource("10_5box4")
 
-[node name="BossHealthLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 837.0
-offset_top = 584.0
-offset_right = 959.0
-offset_bottom = 607.0
-text = "Boss Health: %s"
-
-[node name="BossHealthBar" type="TextureProgressBar" parent="UI"]
-layout_mode = 0
-offset_left = 264.0
-offset_top = 614.0
-offset_right = 963.0
-offset_bottom = 630.0
-max_value = 10.0
-value = 5.0
-nine_patch_stretch = true
-texture_under = ExtResource("9_5cnij")
-texture_progress = ExtResource("10_5box4")
-
-[node name="BossNameLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 589.0
-offset_right = 673.0
-offset_bottom = 612.0
-text = "Boss Name: %s"
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -266.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="life_changed" from="Player" to="UI" method="_on_player_life_changed"]
 [connection signal="remaining_ammo_changed" from="Player" to="UI" method="_on_player_remaining_ammo_changed"]

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 
 [display]
 
@@ -26,7 +27,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
@@ -132,3 +133,11 @@ interact={
 3d_physics/layer_4="Ammo"
 3d_physics/layer_5="Obstacle"
 3d_physics/layer_6="AmmoReload"
+3d_physics/layer_7="Altar"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+environment/ssao/quality=0
+global_illumination/sdfgi/frames_to_converge=0

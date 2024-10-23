@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://lrvvql7135mo"]
+
+[ext_resource type="Texture2D" uid="uid://v3n4gm8u4wod" path="res://assets/ui/bars/health-under.png" id="1_68mfo"]
+[ext_resource type="Texture2D" uid="uid://bcun7ikaou25c" path="res://assets/ui/bars/health-over.png" id="2_s8wgu"]
+
+[node name="BossUI" type="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="BossHealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 811.0
+offset_top = 22.0
+offset_right = 933.0
+offset_bottom = 45.0
+text = "Boss Health: %s"
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 52.0
+offset_right = 937.0
+offset_bottom = 68.0
+max_value = 10.0
+value = 5.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_68mfo")
+texture_progress = ExtResource("2_s8wgu")
+
+[node name="BossNameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 27.0
+offset_right = 647.0
+offset_bottom = 50.0
+text = "Boss Name: %s"

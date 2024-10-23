@@ -11,6 +11,7 @@ var Patterns: Array[Pattern] = [
 enum State {NOOP, SETUP_PATTERN, ATTACK}
 
 @export var enabled := true
+@export var type: String
 
 var current_pattern: Pattern
 var pattern_cooldown: float = 0
@@ -26,6 +27,8 @@ var pattern_transform: Transform3D
 
 
 func _ready():
+	add_to_group("boss")
+	
 	weakpoint.connect("hit", hit)
 	weakpoint.connect("hit", blink_component.blink)
 
