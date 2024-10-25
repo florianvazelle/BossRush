@@ -8,5 +8,5 @@ func _unhandled_input(event):
 				KEY_R:
 					get_tree().paused = false
 					get_tree().change_scene_to_file("res://scenes/main.tscn")
-				KEY_T:
+				KEY_ESCAPE:
 					get_tree().quit()

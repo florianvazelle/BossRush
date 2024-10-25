@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwfu5gdkeefe3"]
+[gd_scene load_steps=20 format=3 uid="uid://cwfu5gdkeefe3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_nernh"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/player/player.tscn" id="2_mkirp"]
@@ -7,8 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://b05wfry8s5tbp" path="res://scenes/pumpkin_reload.tscn" id="6_klwtk"]
 [ext_resource type="Script" path="res://scripts/reload_spawn.gd" id="6_w1d3r"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="8_bqhqc"]
-[ext_resource type="Texture2D" uid="uid://v3n4gm8u4wod" path="res://assets/ui/bars/health-under.png" id="9_5cnij"]
-[ext_resource type="Texture2D" uid="uid://bcun7ikaou25c" path="res://assets/ui/bars/health-over.png" id="10_5box4"]
+[ext_resource type="Texture2D" uid="uid://cdu5ivhyslcap" path="res://assets/textures/icons/icons8-heart-100.png" id="8_of85v"]
+[ext_resource type="Texture2D" uid="uid://c70t6m1044igs" path="res://assets/textures/icons/icons8-ammo-100.png" id="9_0sfqx"]
+[ext_resource type="AudioStream" uid="uid://dhy07vqrtpbqi" path="res://assets/sounds/sfx/collect.mp3" id="10_gjx05"]
+[ext_resource type="Script" path="res://addons/post_processing/node/post_process.gd" id="11_iquu3"]
+[ext_resource type="AudioStream" uid="uid://7plhbwhkredd" path="res://assets/sounds/boss_theme.ogg" id="11_wj3v0"]
+[ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="12_go0uk"]
+[ext_resource type="Script" path="res://scripts/restart.gd" id="13_kmxrh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynxdi"]
 shader = ExtResource("3_mfmvq")
@@ -31,12 +36,86 @@ ambient_light_color = Color(0.882812, 0.882812, 0.882812, 1)
 ambient_light_energy = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glomt"]
-size = Vector3(37.0824, 1, 37.3059)
+size = Vector3(50, 1, 50)
+
+[sub_resource type="Resource" id="Resource_24c4b"]
+script = ExtResource("12_go0uk")
+reload = false
+ASCII = false
+ASCIISize = Vector2(4, 9)
+ChromaticAberration = true
+StrenghtCA = 2.0
+Blur = false
+L_O_D = 1.0
+FishEye = false
+FishEyeAspect = 1.0
+FishEyeDistortion = 1.0
+FishEyeRadius = 1.0
+FishEyeAlpha = 1.0
+FishEyeCrop = 1.0
+FishEyeCropColor = Color(0, 0, 0, 1)
+Vignette = false
+VignetteIntensity = 0.4
+VignetteOpacity = 0.5
+VignetteR_G_B = Color(0, 0, 0, 1)
+Glitch = false
+GlitchRange = 0.05
+GlitchNoiseQuality = 250.0
+GlitchIntenity = 0.0088
+GlitchOffset = 0.03
+GlitchColorOffset = 1.3
+Outline = false
+OutlineColor = Color(0, 0, 0, 1)
+OutlineThreshold = 0.0
+OutlineBlend = 0.01
+Grain = true
+GrainPower = 75
+CircularWaves = false
+CircularWavesAmplitude = 2.0
+CircularWavesFrequency = 12.69
+CircularWavesRippleRate = 9.2
+SpeedLines = false
+SpeedLinesColor = Color(1, 1, 1, 1)
+SpeedLinesCount = 2
+SpeedLineDensity = 0.072
+SpeedLineSpeed = 20
+ColorCorrection = false
+ColorCorrectionTint = Color(0, 0, 0, 1)
+ColorCorrectionBrightness = 0.0
+ColorCorrectionSaturation = 0.0
+Palette = false
+Pixelate = true
+PixelatePixelSize = 2
+CRT = false
+overlay = false
+scanlines_opacity = 0.4
+scanlines_width = 0.25
+grille_opacity = 0.3
+pixelate = true
+roll_speed = 8.0
+roll_size = 15.0
+roll_variation = 1.8
+distort_intensity = 0.05
+noise_opacity = 0.4
+noise_speed = 5.0
+static_noise_intensity = 0.06
+aberration = 0.03
+brightness = 1.4
+discolor = true
+warp_amount = 1.0
+clip_warp = false
+vignette_intensity = 0.4
+vignette_opacity = 0.5
+AnalogMonitor = false
+AnalogMonitorResolution = Vector2(256, 256)
+ScreenShake = false
+ScreenShakePower = 0.1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_nernh")
 
 [node name="Player" parent="." instance=ExtResource("2_mkirp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="Level" parent="." instance=ExtResource("3_lvuoj")]
 
@@ -70,32 +149,44 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("8_bqhqc")
 
-[node name="AmmoLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 75.0
-offset_right = 97.0
-offset_bottom = 98.0
-text = "Ammo: %s"
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 106.0
+offset_bottom = 70.0
 
-[node name="PlayerHealthLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 48.0
-offset_right = 96.0
-offset_bottom = 71.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("8_of85v")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlayerHealthLabel" type="Label" parent="UI/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
 text = "Health: %s"
 
-[node name="PlayerHealthBar" type="TextureProgressBar" parent="UI"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 270.0
-offset_bottom = 28.0
-max_value = 10.0
-value = 5.0
-texture_under = ExtResource("9_5cnij")
-texture_progress = ExtResource("10_5box4")
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_0sfqx")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AmmoLabel" type="Label" parent="UI/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Ammo: %s"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -106,8 +197,137 @@ anchor_bottom = 1.0
 offset_top = -266.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
+
+[node name="EndPanel" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/EndPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.52549)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/EndPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EndPanel/CenterContainer"]
+custom_minimum_size = Vector2(294.79, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "You defeat all Bosses !"
+horizontal_alignment = 1
+
+[node name="TimeRow" type="HBoxContainer" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Field" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/TimeRow"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Time"
+
+[node name="Value" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/TimeRow"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="AmmoRow" type="HBoxContainer" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Field" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/AmmoRow"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Ammo used"
+
+[node name="Value" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/AmmoRow"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="WeakpointRow" type="HBoxContainer" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Field" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/WeakpointRow"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Wekpoint hit"
+
+[node name="Value" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/WeakpointRow"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Field" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/Score"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Total"
+
+[node name="Value" type="Label" parent="UI/EndPanel/CenterContainer/VBoxContainer/Score"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "H"
+horizontal_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_gjx05")
+bus = &"SFX"
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_wj3v0")
+autoplay = true
+bus = &"Music"
+
+[node name="PostProcess" type="CanvasLayer" parent="."]
+script = ExtResource("11_iquu3")
+configuration = SubResource("Resource_24c4b")
+
+[node name="Restart" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("13_kmxrh")
 
 [connection signal="life_changed" from="Player" to="UI" method="_on_player_life_changed"]
 [connection signal="remaining_ammo_changed" from="Player" to="UI" method="_on_player_remaining_ammo_changed"]
 [connection signal="timeout" from="SpawnReloadTimer" to="PumpkinSpawnRange" method="_on_timer_spawn_pumpkin_timeout"]
-[connection signal="ReloadPlayer" from="PumpkinSpawnRange" to="Player" method="_on_pumpkin_spawn_range_reload_player"]
+[connection signal="reload_player" from="PumpkinSpawnRange" to="Player" method="_on_pumpkin_spawn_range_reload_player"]

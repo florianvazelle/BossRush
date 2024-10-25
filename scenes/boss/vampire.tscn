@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://blmfi55g4xqxv"]
+
+[ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_l0raw"]
+[ext_resource type="PackedScene" uid="uid://b8g8gqxsy05x5" path="res://assets/models/graveyard/character-vampire.fbx" id="2_dws3h"]
+[ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="3_bv0bl"]
+[ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_ydgtm"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="5_tcms6"]
+[ext_resource type="Script" path="res://scripts/boss/hit_sound.gd" id="6_cqoj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olkwr"]
+size = Vector3(0.312958, 0.763916, 0.322571)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrha5"]
+size = Vector3(0.877441, 0.0971069, 0.165527)
+
+[node name="Vampire" type="Node3D"]
+
+[node name="VampireBody" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_l0raw")
+type = "Draeven, Scourge of the Vampires"
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="VampireBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 3.73766, 0.000335693)
+shape = SubResource("BoxShape3D_olkwr")
+
+[node name="ArmsCollisionShape" type="CollisionShape3D" parent="VampireBody"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00219727, 4.65694, 0.0245056)
+shape = SubResource("BoxShape3D_hrha5")
+
+[node name="character-vampire" parent="VampireBody" instance=ExtResource("2_dws3h")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Weakpoint" parent="VampireBody" instance=ExtResource("3_bv0bl")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1.11801, 2.81596, -0.124195)
+
+[node name="BlinkComponent" type="Node" parent="VampireBody"]
+script = ExtResource("4_ydgtm")
+
+[node name="LifeComponent" type="Node" parent="VampireBody"]
+script = ExtResource("5_tcms6")
+initial_life = 46
+
+[node name="HitSoundComponent" type="Node" parent="VampireBody"]
+script = ExtResource("6_cqoj8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="VampireBody"]
+unique_name_in_owner = true
+pitch_scale = 0.8
+bus = &"SFX"

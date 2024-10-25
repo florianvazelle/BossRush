@@ -11,6 +11,7 @@ var invulnerability_timer: float = 0
 
 func hit_by_ammo(damage: int):
 	if not invulnerability_activated:
+		Global.weakpoint_hit += 1
 		emit_signal("hit", damage)
 		invulnerability_activated = true
 		# reset timer

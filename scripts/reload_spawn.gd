@@ -1,6 +1,6 @@
 extends Area3D
 
-signal ReloadPlayer(additional_quantity)
+signal reload_player(additional_quantity)
 
 @export var reload_scene: PackedScene
 @export var max_concurrent_reloads = 5
@@ -19,7 +19,7 @@ func _on_timer_spawn_pumpkin_timeout() -> void:
 		add_child(pumpkin)
 		reload_count += 1
 		
-		pumpkin.ReloadTaken.connect(_on_reload_taken)
+		pumpkin.reload_taken.connect(_on_reload_taken)
 
 func _on_reload_taken() -> void:
-	ReloadPlayer.emit(5)
+	reload_player.emit(5)

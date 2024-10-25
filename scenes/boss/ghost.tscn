@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyreud6bx7lpp"]
+[gd_scene load_steps=9 format=3 uid="uid://cyreud6bx7lpp"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhkjf80rwjd" path="res://assets/models/graveyard/character-ghost.fbx" id="1_674k0"]
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_khqc0"]
 [ext_resource type="PackedScene" uid="uid://df805u6l6lhoh" path="res://scenes/weakpoint.tscn" id="2_i317k"]
 [ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_cxy6t"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="5_mjca1"]
+[ext_resource type="Script" path="res://scripts/boss/hit_sound.gd" id="6_5tkee"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0y4o"]
 size = Vector3(0.312958, 0.580566, 0.322571)
@@ -19,28 +20,33 @@ collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_khqc0")
-type = "Ghost"
+type = "Thalmaris, Phantom of the Forgotten"
 
 [node name="BodyCollisionShape" type="CollisionShape3D" parent="GhostBody"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4.65441, 0.000335693)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2.91185, 0.000335693)
 shape = SubResource("BoxShape3D_l0y4o")
 
 [node name="ArmsCollisionShape" type="CollisionShape3D" parent="GhostBody"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00219727, 4.65694, 0.0245056)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.00219727, 2.91438, 0.0245056)
 shape = SubResource("BoxShape3D_5nwp8")
 
 [node name="character-ghost" parent="GhostBody" instance=ExtResource("1_674k0")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.74256, 0)
 
 [node name="Weakpoint" parent="GhostBody" instance=ExtResource("2_i317k")]
-transform = Transform3D(12.4598, 0, 0, 0, 12.4598, 0, 0, 0, 12.4598, -0.576132, 6.22427, 1.0568)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -0.576132, 4.48171, 1.0568)
 
 [node name="BlinkComponent" type="Node" parent="GhostBody"]
 script = ExtResource("4_cxy6t")
 
 [node name="LifeComponent" type="Node" parent="GhostBody"]
 script = ExtResource("5_mjca1")
+initial_life = 35
 
-[node name="DebugStateLabel" type="Label3D" parent="GhostBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14127, 6.73543, 1.63976)
-pixel_size = 0.02
+[node name="HitSoundComponent" type="Node" parent="GhostBody"]
+script = ExtResource("6_5tkee")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="GhostBody"]
+unique_name_in_owner = true
+pitch_scale = 1.5
+bus = &"SFX"

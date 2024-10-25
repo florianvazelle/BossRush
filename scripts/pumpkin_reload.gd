@@ -1,12 +1,12 @@
-extends Area3D
+extends Interactable
 
-signal ReloadTaken()
+signal reload_taken()
 
-func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed(&"interact") and has_overlapping_bodies() and $VisibilityNotifier.is_on_screen():
-		if $TakeReloadTimer.is_stopped():
-			$TakeReloadTimer.start()
 
-func _on_take_reload_timer_timeout() -> void:
-	ReloadTaken.emit()
+func is_interactable():
+	return true
+
+
+func interact():
+	reload_taken.emit()
 	queue_free()

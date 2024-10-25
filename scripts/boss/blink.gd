@@ -32,7 +32,7 @@ func setup_blink_material(root: Node):
 		setup_blink_material(child)
 
 
-func blink(_d):
+func blink():
 	BlinkMaterial.set_shader_parameter("hit", true)
 	blink_activated = true
 	# reset timer

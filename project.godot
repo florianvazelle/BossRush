@@ -13,12 +13,16 @@ config_version=5
 config/name="New Game Project"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 
@@ -27,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/post_processing/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
@@ -36,6 +40,13 @@ import/blender/enabled=false
 [global_group]
 
 player=""
+grass=""
+altar=""
+
+[gui]
+
+theme/default_theme_scale=2.0
+theme/custom_font="res://assets/fonts/BAD.ttf"
 
 [input]
 
@@ -132,8 +143,8 @@ interact={
 3d_physics/layer_3="Weakpoint"
 3d_physics/layer_4="Ammo"
 3d_physics/layer_5="Obstacle"
-3d_physics/layer_6="AmmoReload"
-3d_physics/layer_7="Altar"
+3d_physics/layer_6="Interactable"
+3d_physics/layer_7="BoundingBox"
 
 [rendering]
 

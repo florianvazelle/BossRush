@@ -4,36 +4,42 @@
 [ext_resource type="Texture2D" uid="uid://bcun7ikaou25c" path="res://assets/ui/bars/health-over.png" id="2_s8wgu"]
 
 [node name="BossUI" type="Control"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 3
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 0
 
-[node name="BossHealthLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 811.0
-offset_top = 22.0
-offset_right = 933.0
-offset_bottom = 45.0
-text = "Boss Health: %s"
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="BossHealthBar" type="TextureProgressBar" parent="."]
-layout_mode = 0
-offset_left = 238.0
-offset_top = 52.0
-offset_right = 937.0
-offset_bottom = 68.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="BossNameLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Boss Name: %s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 max_value = 10.0
 value = 5.0
 nine_patch_stretch = true
+stretch_margin_left = 238
+stretch_margin_top = 15
+stretch_margin_right = 345
 texture_under = ExtResource("1_68mfo")
 texture_progress = ExtResource("2_s8wgu")
-
-[node name="BossNameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 525.0
-offset_top = 27.0
-offset_right = 647.0
-offset_bottom = 50.0
-text = "Boss Name: %s"

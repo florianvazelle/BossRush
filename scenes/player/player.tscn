@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdupkh0grwy27"]
+[gd_scene load_steps=10 format=3 uid="uid://bdupkh0grwy27"]
 
 [ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://scenes/player/movement_controller.tscn" id="1_t1jcr"]
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://scenes/player/head.tscn" id="2_41iu1"]
 [ext_resource type="Script" path="res://scripts/player/sprint.gd" id="3_bgqcu"]
+[ext_resource type="AudioStream" uid="uid://cn2gylf3jet62" path="res://assets/sounds/sfx/cannon/bang_03.ogg" id="4_44ms2"]
 [ext_resource type="Script" path="res://scripts/player/interact_ray.gd" id="4_g6dmq"]
 [ext_resource type="Script" path="res://scripts/canon.gd" id="5_w0j3b"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="6_rny40"]
@@ -13,16 +14,17 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="Player" groups=["player"] instance=ExtResource("1_t1jcr")]
 collision_layer = 1
-collision_mask = 22
+collision_mask = 86
 
 [node name="Head" parent="." index="1" instance=ExtResource("2_41iu1")]
 
 [node name="Foot" type="RayCast3D" parent="Head" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
 target_position = Vector3(0, 0, -2)
+collision_mask = 16
 
 [node name="Canon" type="CSGCylinder3D" parent="Head" index="2"]
-transform = Transform3D(0.986182, 0.160164, -0.0423441, 0, -0.255598, -0.966783, -0.165667, 0.953424, -0.252066, 1.0382, -0.64, -1.30804)
+transform = Transform3D(0.986182, 0.160164, -0.0423441, -0.0172882, -0.154708, -0.987809, -0.164762, 0.974891, -0.149801, 1.51927, -0.64, -1.30804)
 material = SubResource("StandardMaterial3D_tb2ry")
 script = ExtResource("5_w0j3b")
 
@@ -33,10 +35,25 @@ transform = Transform3D(0.986182, 1.19209e-07, -0.165667, 0.160164, -0.255597, 0
 wait_time = 0.25
 one_shot = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Head/Canon" index="2"]
+stream = ExtResource("4_44ms2")
+bus = &"SFX"
+
+[node name="CenterContainer" type="CenterContainer" parent="Head/Canon" index="3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Head/Canon/CenterContainer" index="0"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+
 [node name="InteractRay" type="RayCast3D" parent="Head" index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -4, 0)
-collision_mask = 96
+collision_mask = 32
 script = ExtResource("4_g6dmq")
 
 [node name="CenterContainer" type="CenterContainer" parent="Head/InteractRay" index="0"]
@@ -58,6 +75,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="Head/InteractRay/CenterContainer/VBoxContainer" index="1"]
 layout_mode = 2
+theme_override_constants/outline_size = 5
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -69,6 +87,7 @@ script = ExtResource("10_jo4mt")
 feet_path = NodePath("../Head/Foot")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FootstepComponent" index="0"]
+bus = &"SFX"
 
 [node name="LifeComponent" type="Node" parent="." index="4"]
 script = ExtResource("6_rny40")
