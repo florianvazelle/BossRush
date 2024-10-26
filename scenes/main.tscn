@@ -238,6 +238,10 @@ theme_override_constants/outline_size = 5
 text = "You defeat all Bosses !"
 horizontal_alignment = 1
 
+[node name="Control" type="Control" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
 [node name="TimeRow" type="HBoxContainer" parent="UI/EndPanel/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2

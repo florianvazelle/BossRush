@@ -1,6 +1,6 @@
 extends CSGCylinder3D
 
-const Ammo := preload("res://scenes/ammo.tscn")
+const AmmoScene := preload("res://scenes/ammo.tscn")
 
 @export var max_ammo_count = 10
 
@@ -18,7 +18,7 @@ func _unhandled_input(event):
 		# TODO: play shoot sfx
 		player.play()
 		
-		var ammo := Ammo.instantiate()
+		var ammo := AmmoScene.instantiate()
 		get_owner().get_parent().add_child(ammo)
 		ammo.global_position = spawn.global_position
 		

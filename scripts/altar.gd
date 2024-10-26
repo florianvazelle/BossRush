@@ -22,7 +22,7 @@ func interact():
 
 	# Summon boss
 	audio_player.play()
-	var boss = boss.instantiate()
-	add_child(boss)
-	boss.global_position.y = 5
-	boss.get_children()[0].enabled = true
+	var boss_instance = boss.instantiate()
+	add_child(boss_instance)
+	boss_instance.global_position.y = 5
+	boss_instance.get_children()[0].enabled = true

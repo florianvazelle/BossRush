@@ -13,7 +13,7 @@ func _on_player_life_changed(new_life: Variant) -> void:
 	%PlayerHealthLabel.text = "%s" % new_life
 	#$sPlayerHealthBar.value = new_life
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for boss in get_tree().get_nodes_in_group("boss"):
 		if boss not in boss_ui:
 			boss_ui[boss] = BossUI.instantiate()

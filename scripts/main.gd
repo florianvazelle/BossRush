@@ -17,13 +17,13 @@ func _input(event: InputEvent) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _process(delta):
+func _process(_delta):
 	if Global.player_is_dead:
-		var score_letter = Global.set_score(self)
+		Global.set_score(self)
 		
 	for altar in get_tree().get_nodes_in_group("altar"):
 		if not altar.triggered:
 			return
 	if len(get_tree().get_nodes_in_group("boss")) == 0:
-		var score_letter = Global.set_score(self)
+		Global.set_score(self)
 	

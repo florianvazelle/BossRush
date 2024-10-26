@@ -52,7 +52,6 @@ func hit(damage: int) -> void:
 		look_at(current_target, Vector3.UP, true)
 	
 	# TODO: play hit sfx
-	print("hit")
 	blink_component.blink()
 	hit_sound_component.play()
 	life_component.apply_damage(damage)

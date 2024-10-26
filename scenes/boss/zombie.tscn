@@ -42,7 +42,7 @@ script = ExtResource("4_gojj0")
 
 [node name="LifeComponent" type="Node" parent="ZombieBody"]
 script = ExtResource("5_6q88b")
-initial_life = 57
+initial_life = 37
 
 [node name="HitSoundComponent" type="Node" parent="ZombieBody"]
 script = ExtResource("6_rtrhn")

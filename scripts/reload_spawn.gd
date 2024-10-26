@@ -22,4 +22,5 @@ func _on_timer_spawn_pumpkin_timeout() -> void:
 		pumpkin.reload_taken.connect(_on_reload_taken)
 
 func _on_reload_taken() -> void:
+	reload_count -= 1
 	reload_player.emit(5)

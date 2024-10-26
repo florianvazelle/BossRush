@@ -29,9 +29,9 @@
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1mhl"]
-size = Vector3(75, 1, 75)
+size = Vector3(75, 6.16846, 75)
 
-[sub_resource type="Resource" id="Resource_q26bq"]
+[sub_resource type="Resource" id="Resource_a72oa"]
 script = ExtResource("4_1cj7e")
 instance_count = 75
 align_to_path = false
@@ -42,7 +42,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_31g1p"]
+[sub_resource type="Resource" id="Resource_era7j"]
 script = ExtResource("6_cmbkr")
 rotation = Vector3(0, 360, 0)
 snap_angle = Vector3(0, 0, 0)
@@ -52,7 +52,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_itr21"]
+[sub_resource type="Resource" id="Resource_ccu6c"]
 script = ExtResource("5_irtah")
 operation = 1
 scale = Vector3(5, 5, 5)
@@ -62,7 +62,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_iue6x"]
+[sub_resource type="Resource" id="Resource_2jry2"]
 script = ExtResource("8_dxlmu")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -78,15 +78,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_8f4ix"]
+[sub_resource type="Resource" id="Resource_dci7f"]
 script = ExtResource("2_ridqo")
-stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_q26bq"), SubResource("Resource_31g1p"), SubResource("Resource_itr21"), SubResource("Resource_iue6x")])
+stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_a72oa"), SubResource("Resource_era7j"), SubResource("Resource_ccu6c"), SubResource("Resource_2jry2")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("9_eq2j1")
 radius = 32.0354
 
-[sub_resource type="Resource" id="Resource_7m6jt"]
+[sub_resource type="Resource" id="Resource_32ers"]
 script = ExtResource("4_1cj7e")
 instance_count = 50
 align_to_path = false
@@ -97,7 +97,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_mmuc1"]
+[sub_resource type="Resource" id="Resource_kqots"]
 script = ExtResource("5_irtah")
 operation = 1
 scale = Vector3(5, 5, 5)
@@ -107,7 +107,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_bxyto"]
+[sub_resource type="Resource" id="Resource_4abuk"]
 script = ExtResource("6_cmbkr")
 rotation = Vector3(0, 360, 0)
 snap_angle = Vector3(0, 0, 0)
@@ -117,7 +117,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_piyul"]
+[sub_resource type="Resource" id="Resource_86g6v"]
 script = ExtResource("8_dxlmu")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -133,9 +133,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_kw7aq"]
+[sub_resource type="Resource" id="Resource_s4qmr"]
 script = ExtResource("2_ridqo")
-stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_7m6jt"), SubResource("Resource_mmuc1"), SubResource("Resource_bxyto"), SubResource("Resource_piyul")])
+stack = Array[ExtResource("3_6da8v")]([SubResource("Resource_32ers"), SubResource("Resource_kqots"), SubResource("Resource_4abuk"), SubResource("Resource_86g6v")])
 
 [sub_resource type="Resource" id="Resource_h8r3r"]
 script = ExtResource("9_eq2j1")
@@ -179,11 +179,12 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_qtipf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.58423, 0)
 shape = SubResource("BoxShape3D_h1mhl")
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("1_lsxa8")
-modifier_stack = SubResource("Resource_8f4ix")
+modifier_stack = SubResource("Resource_dci7f")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -206,7 +207,7 @@ shape = SubResource("Resource_g8bsm")
 
 [node name="ProtonScatter2" type="Node3D" parent="."]
 script = ExtResource("1_lsxa8")
-modifier_stack = SubResource("Resource_kw7aq")
+modifier_stack = SubResource("Resource_s4qmr")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

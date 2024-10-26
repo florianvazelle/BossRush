@@ -55,7 +55,7 @@ func _process(_delta) -> void:
 						player.stream = audio
 						player.play()
 
-						var temp_accel: float = character.get_accel() + (character.speed - 10) / 4
+						var temp_accel: float = character.get_accel() + float(character.speed - 10) / 4.0
 						footsteep_timer = 1 - (0.06 * temp_accel)
 						break
 	else:
