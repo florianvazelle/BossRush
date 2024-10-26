@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="BossRush"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://assets/icon.png"
 
 [audio]
 
@@ -23,6 +24,7 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Global="*res://scripts/global.gd"
+Loading="*res://loading/loading.tscn"
 
 [display]
 
