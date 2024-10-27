@@ -58,6 +58,7 @@ func set_score(main):
 	
 	if player_is_dead:
 		# Game Over
+		main.get_node("UI/EndPanel/Advices").show()
 		main.get_node("UI/EndPanel/ColorRect").set_color(Color("#00000071"))
 		main.get_node("UI/EndPanel/CenterContainer/VBoxContainer/Label").set_text("You lose, try again..")
 	else:

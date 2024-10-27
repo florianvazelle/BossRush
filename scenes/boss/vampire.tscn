@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blmfi55g4xqxv"]
+[gd_scene load_steps=11 format=3 uid="uid://blmfi55g4xqxv"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_l0raw"]
 [ext_resource type="PackedScene" uid="uid://b8g8gqxsy05x5" path="res://assets/models/graveyard/character-vampire.fbx" id="2_dws3h"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_ydgtm"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="5_tcms6"]
 [ext_resource type="Script" path="res://scripts/boss/hit_sound.gd" id="6_cqoj8"]
+[ext_resource type="Script" path="res://addons/destruction/destruction.gd" id="7_tgbcu"]
+[ext_resource type="PackedScene" uid="uid://tuml2fvvv62v" path="res://assets/models/smashed_vampire.glb" id="8_s3m45"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_olkwr"]
 size = Vector3(0.312958, 0.763916, 0.322571)
@@ -50,3 +52,8 @@ script = ExtResource("6_cqoj8")
 unique_name_in_owner = true
 pitch_scale = 0.8
 bus = &"SFX"
+
+[node name="Destruction" type="Node" parent="VampireBody" node_paths=PackedStringArray("shard_container")]
+script = ExtResource("7_tgbcu")
+fragmented = ExtResource("8_s3m45")
+shard_container = NodePath("../..")

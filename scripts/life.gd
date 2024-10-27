@@ -41,9 +41,11 @@ func dead() -> void:
 		if body_node.enabled:
 			body_node.enabled = false
 			var audio_player = get_node(^"%AudioStreamPlayer")
-			audio_player.connect("finished", get_owner().queue_free)
+			#audio_player.connect("finished", get_owner().queue_free)
 			audio_player.stream = DieSFX
 			audio_player.play()
+			
+			$"../Destruction".destroy()
 	else:
 		Global.player_is_dead = true
 	

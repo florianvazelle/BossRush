@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1ik213bdwkfv"]
+[gd_scene load_steps=12 format=3 uid="uid://d1ik213bdwkfv"]
 
 [ext_resource type="Script" path="res://scripts/boss/zombie.gd" id="1_d5xbr"]
 [ext_resource type="PackedScene" uid="uid://8hn130eerinn" path="res://assets/models/graveyard/character-zombie.fbx" id="1_jdl0n"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/life.gd" id="5_6q88b"]
 [ext_resource type="Script" path="res://scripts/boss/hit_sound.gd" id="6_rtrhn"]
 [ext_resource type="AudioStream" uid="uid://c346fb4t5g5jg" path="res://assets/sounds/sfx/hit/hit1.ogg" id="7_pycv4"]
+[ext_resource type="Script" path="res://addons/destruction/destruction.gd" id="8_3t6wp"]
+[ext_resource type="PackedScene" uid="uid://cvxin6y3448q7" path="res://assets/models/smashed_zombie.glb" id="9_orh5f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_olkwr"]
 size = Vector3(0.312958, 0.763916, 0.322571)
@@ -52,3 +54,8 @@ unique_name_in_owner = true
 stream = ExtResource("7_pycv4")
 pitch_scale = 0.5
 bus = &"SFX"
+
+[node name="Destruction" type="Node" parent="ZombieBody" node_paths=PackedStringArray("shard_container")]
+script = ExtResource("8_3t6wp")
+fragmented = ExtResource("9_orh5f")
+shard_container = NodePath("../..")

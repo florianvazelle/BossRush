@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyreud6bx7lpp"]
+[gd_scene load_steps=11 format=3 uid="uid://cyreud6bx7lpp"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhkjf80rwjd" path="res://assets/models/graveyard/character-ghost.fbx" id="1_674k0"]
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_khqc0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/boss/blink.gd" id="4_cxy6t"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="5_mjca1"]
 [ext_resource type="Script" path="res://scripts/boss/hit_sound.gd" id="6_5tkee"]
+[ext_resource type="Script" path="res://addons/destruction/destruction.gd" id="7_vugdb"]
+[ext_resource type="PackedScene" uid="uid://bxvi4u1udenoh" path="res://assets/models/smashed_ghost.glb" id="8_vqx66"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0y4o"]
 size = Vector3(0.312958, 0.580566, 0.322571)
@@ -50,3 +52,8 @@ script = ExtResource("6_5tkee")
 unique_name_in_owner = true
 pitch_scale = 1.5
 bus = &"SFX"
+
+[node name="Destruction" type="Node" parent="GhostBody" node_paths=PackedStringArray("shard_container")]
+script = ExtResource("7_vugdb")
+fragmented = ExtResource("8_vqx66")
+shard_container = NodePath("../..")
