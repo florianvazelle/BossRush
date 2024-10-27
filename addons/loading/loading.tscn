@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckypo4jsjuepe"]
 
-[ext_resource type="Script" path="res://loading/loading.gd" id="1"]
+[ext_resource type="Script" path="res://addons/loading/loading.gd" id="1"]
 
 [sub_resource type="Animation" id="7"]
 resource_name = "Postload"

@@ -8,6 +8,7 @@ var triggered: bool = false
 @onready var audio_player = $"../AudioStreamPlayer"
 
 func _ready():
+	super._ready()
 	text = "Summon"
 
 func is_interactable():
@@ -19,6 +20,7 @@ func interact():
 		return
 
 	triggered = true
+	remove_highlight_material(self)
 
 	# Summon boss
 	audio_player.play()

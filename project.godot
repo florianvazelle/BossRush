@@ -24,7 +24,7 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Global="*res://scripts/global.gd"
-Loading="*res://loading/loading.tscn"
+Loading="*res://addons/loading/loading.tscn"
 
 [display]
 
