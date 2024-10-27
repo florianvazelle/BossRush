@@ -7,9 +7,9 @@ var ammo_used: int = 0
 var weakpoint_hit: int = 0
 var played_time: float
 
-var max_played_time := 10 * 60  # 10 minutes
-var max_ammo_used := 15 + 37 + 26  # one ammo for each life point
-var max_weakpoint_hit := floori(float(max_ammo_used) / 4.0)  # max_ammo_used / 4
+var max_played_time := 30 * 60  # 30 minutes
+var max_ammo_used := 200  # one ammo for each life point
+var max_weakpoint_hit := 20  # max_ammo_used / 4
 
 
 func get_score():
@@ -18,8 +18,8 @@ func get_score():
 		score = 0
 	else:
 		score = (
-			(float(max_played_time - played_time) / float(max_played_time)) * 0.4 + 
-			(float(max_ammo_used - ammo_used) / float(max_ammo_used)) * 0.2 + 
+			(float(max_played_time - played_time) / float(max_played_time)) * 0.5 + 
+			(float(max_ammo_used - ammo_used) / float(max_ammo_used)) * 0.1 + 
 			(float(weakpoint_hit) / float(max_weakpoint_hit)) * 0.4
 		)
 		
