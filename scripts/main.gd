@@ -4,6 +4,16 @@ extends Node3D
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	# Handle debug arguments
+	var args := OS.get_cmdline_user_args()
+	if "--win" in args:
+		Global.set_score(self)
+	elif "--dead" in args:
+		Global.player_is_dead = true
+		Global.set_score(self)
+	elif "--1hp" in args:
+		Global.debug_1hp = true
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"quit"):

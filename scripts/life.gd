@@ -13,6 +13,12 @@ var cooldown_timer: float = 0
 
 signal life_changed(new_life)
 
+
+func _ready():
+	if Global.debug_1hp:
+		life = 1
+
+
 func apply_damage(damage: int) -> void:
 	life -= damage
 	life_changed.emit(life)

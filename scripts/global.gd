@@ -3,13 +3,16 @@ extends Node
 @onready var start_time = Time.get_unix_time_from_system()
 var player_is_dead: bool = false
 
+# Debug
+var debug_1hp: bool = false
+
 var ammo_used: int = 0
 var weakpoint_hit: int = 0
 var played_time: float
 
-var max_played_time := 30 * 60  # 30 minutes
-var max_ammo_used := 200  # one ammo for each life point
-var max_weakpoint_hit := 20  # max_ammo_used / 4
+var max_played_time := 30.0 * 60.0  # 30 minutes
+var max_ammo_used := 200.0  # one ammo for each life point
+var max_weakpoint_hit := 10.0  # max_ammo_used / 4
 
 
 func get_score():
@@ -18,9 +21,9 @@ func get_score():
 		score = 0
 	else:
 		score = (
-			(float(max_played_time - played_time) / float(max_played_time)) * 0.5 + 
-			(float(max_ammo_used - ammo_used) / float(max_ammo_used)) * 0.1 + 
-			(float(weakpoint_hit) / float(max_weakpoint_hit)) * 0.4
+			clampf((max_played_time - played_time) / max_played_time, 0.0, 1.0) * 0.5 + 
+			clampf((max_ammo_used - ammo_used) / max_ammo_used, 0.0, 1.0) * 0.1 + 
+			clampf(weakpoint_hit / max_weakpoint_hit, 0.0, 1.0) * 0.4
 		)
 		
 	if score >= 0.9:
