@@ -65,7 +65,7 @@ func set_score(main):
 		main.get_node("UI/EndPanel/ColorRect").set_color(Color("#00000071"))
 		main.get_node("UI/EndPanel/CenterContainer/VBoxContainer/Label").set_text("You lose, try again..")
 	else:
-		main.get_node("AudioStreamPlayer").play()
+		# main.get_node("AudioStreamPlayer").play()
 
 		main.get_node("UI/EndPanel/ColorRect").set_color(Color("#ffffff86"))
 		main.get_node("UI/EndPanel/CenterContainer/VBoxContainer/Label").set_text("You defeat all bosses !")
